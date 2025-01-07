@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>专业贷款咨询</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #2563eb 100%);
+            --gradient-secondary: linear-gradient(135deg, #84cc16 0%, #22c55e 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.18);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: #0f172a;
+            overflow-x: hidden;
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(34, 197, 94, 0.15) 0%, transparent 50%);
+        }
+
+        .header {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav a:hover {
+            background: var(--glass-bg);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1920/1080') no-repeat center center;
+            background-size: cover;
+        }
+
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientFlow 8s linear infinite;
+        }
+
+        .typed-text {
+            min-height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .highlight {
+            color: #6366f1;
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+        }
+
+        .highlight:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            background: var(--gradient-primary);
+            color: #fff;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            border: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #6366f1;
+        }
+
+        .btn-outline:hover {
+            background: var(--gradient-primary);
+        }
+
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            text-align: center;
+        }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1.5rem;
+            background: var(--gradient-secondary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 3rem auto 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+        }
+
+        .footer {
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .hero-description {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards 0.5s;
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">ARIC</div>
+            <nav class="nav">
+                <a href="#home">首页</a>
+                <a href="#about">关于</a>
+                <a href="#services">服务</a>
+                <a href="#contact">联系</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>
+                <span class="gradient-text">专业贷款咨询</span>
+                <span class="typed-text"></span>
+            </h1>
+            <p class="hero-description" data-aos="fade-up" data-aos-delay="400">
+                我们致力于为客户提供<span class="highlight">专业</span>的贷款方案，助您实现<span class="highlight">理财目标</span>。
+            </p>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
+                <button class="btn btn-primary">了解更多</button>
+                <button class="btn btn-outline">联系我们</button>
+            </div>
+        </div>
+        <div class="hero-particles" id="particles-js"></div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="glass-card" data-aos="fade-right">
+            <h2>关于我们</h2>
+            <p>作为专业的贷款咨询顾问，我们拥有丰富的行业经验和专业知识，为客户提供全方位的贷款解决方案。</p>
+        </div>
+    </section>
+
+    <section id="services" class="section">
+        <h2>我们的服务</h2>
+        <div class="services-grid">
+            <div class="glass-card service-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                </div>
+                <h3>贷款咨询</h3>
+                <p>提供专业的贷款方案评估和建议，帮助您获得最优惠的贷款条件。</p>
+            </div>
+
+            <div class="glass-card service-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="3" y1="9" x2="21" y2="9"></line>
+                        <path d="M8 3v18"></path>
+                    </svg>
+                </div>
+                <h3>财务规划</h3>
+                <p>为您的财务目标量身定制全面的贷款和理财规划方案。</p>
+            </div>
+
+            <div class="glass-card service-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                </div>
+                <h3>贷款审批</h3>
+                <p>提供全程贷款申请指导和审批跟进服务，确保您顺利获得贷款。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="glass-card" data-aos="fade-up">
+            <h2>联系我们</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="您的姓名" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="您的邮箱" required>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" rows="5" placeholder="请输入您的留言" required></textarea>
+                </div>
+                <button type="submit" class="btn">发送消息</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="section">
+            <p>© 2025 ARIC. 保留所有权利。</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // 初始化AOS动画
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100,
+            easing: 'ease-out-cubic'
+        });
+
+        // 初始化打字机效果
+        new
